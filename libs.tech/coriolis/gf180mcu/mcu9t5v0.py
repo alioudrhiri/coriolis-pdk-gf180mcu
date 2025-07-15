@@ -166,9 +166,12 @@ def _routing ( useHV ):
         cfg.anabatic.routingGauge = 'mcu9t5v0'
         cfg.anabatic.cellGauge = 'LEF.GF018hv5v_green_sc9'
         cfg.anabatic.gcellAspectRatio = 1.5 
+        cfg.anabatic.smallNetWidth  = u(5.04*0.33)
+        cfg.anabatic.smallNetHeight = u(5.04*1.30)
         cfg.anabatic.globalLengthThreshold = 30*u(5.04)
         cfg.anabatic.hsmallThreshold = 3
         cfg.anabatic.vsmallThreshold = 3
+        cfg.anabatic.vlargeThreshold = 5
         cfg.anabatic.saturateRatio = 0.90
         cfg.anabatic.saturateRp = 10
         cfg.anabatic.topRoutingLayer = 'Metal5'
@@ -185,10 +188,12 @@ def _routing ( useHV ):
         cfg.anabatic.netBuilderStyle = netBuilderStyle
         cfg.anabatic.routingStyle = routingStyle
         cfg.katana.disableStackedVias = False
-        cfg.katana.hTracksReservedLocal = 4
-        cfg.katana.hTracksReservedLocal = [0, 20]
-        cfg.katana.vTracksReservedLocal = 3
-        cfg.katana.vTracksReservedLocal = [0, 20]
+        cfg.katana.hTracksReservedMin = 4
+        cfg.katana.hTracksReservedLocal = 7
+        cfg.katana.hTracksReservedLocal = [0, 18]
+        cfg.katana.vTracksReservedMin = 7
+        cfg.katana.vTracksReservedLocal = 10
+        cfg.katana.vTracksReservedLocal = [0, 28]
         cfg.katana.termSatReservedLocal = 8
         cfg.katana.termSatThreshold = 9
         cfg.katana.eventsLimit = 4000002
@@ -207,6 +212,7 @@ def _routing ( useHV ):
         cfg.clockTree.buffer = 'gf180mcu_fd_sc_mcu9t5v0__clkbuf_2'
         cfg.clockTree.placerEngine = 'Etesian'
         cfg.block.spareSide = 10
+        cfg.block.upperEastWestPins = True
         cfg.spares.buffer = 'gf180mcu_fd_sc_mcu9t5v0__clkbuf_2'
         cfg.spares.maxSinks = 20
 
@@ -249,40 +255,40 @@ def _loadStdLib ( pdkTop ):
     af.wrapLibrary( cellLib, 0 )
 
     metal1 = tech.getLayer( 'Metal1' )
-    with UpdateSession():
-        cell = cellLib.getCell( 'gf180mcu_fd_sc_mcu9t5v0__nor3_1' )
-        if cell:
-            print( '     - Patching pin A3 of "{}".'.format( cell.getName() ))
-            A3 = cell.getNet( 'A3' )
-            for component in A3.getComponents():
-                if component.getLayer() != metal1: continue
-                if not isinstance(component,Vertical): continue
-                if not NetExternalComponents.isExternal(component): continue
-                component.setDySource( component.getDySource() - u(0.005) )
-                component.setDyTarget( component.getDyTarget() + u(0.005) )
-                break
-        cell = cellLib.getCell( 'gf180mcu_fd_sc_mcu9t5v0__oai221_1' )
-        if cell:
-            print( '     - Patching pin A2 of "{}".'.format( cell.getName() ))
-            A2 = cell.getNet( 'A2' )
-            for component in A2.getComponents():
-                if component.getLayer() != metal1: continue
-                if not isinstance(component,Vertical): continue
-                if not NetExternalComponents.isExternal(component): continue
-                component.setDySource( component.getDySource() - u(0.005) )
-                component.setDyTarget( component.getDyTarget() + u(0.005) )
-                break
-        cell = cellLib.getCell( 'gf180mcu_fd_sc_mcu9t5v0__nand4_1' )
-        if cell:
-            print( '     - Patching pin A2 of "{}".'.format( cell.getName() ))
-            A2 = cell.getNet( 'A2' )
-            for component in A2.getComponents():
-                if component.getLayer() != metal1: continue
-                if not isinstance(component,Vertical): continue
-                if not NetExternalComponents.isExternal(component): continue
-                component.setDySource( component.getDySource() - u(0.005) )
-                component.setDyTarget( component.getDyTarget() + u(0.005) )
-                break
+    #with UpdateSession():
+    #    cell = cellLib.getCell( 'gf180mcu_fd_sc_mcu9t5v0__nor3_1' )
+    #    if cell:
+    #        print( '     - Patching pin A3 of "{}".'.format( cell.getName() ))
+    #        A3 = cell.getNet( 'A3' )
+    #        for component in A3.getComponents():
+    #            if component.getLayer() != metal1: continue
+    #            if not isinstance(component,Vertical): continue
+    #            if not NetExternalComponents.isExternal(component): continue
+    #            component.setDySource( component.getDySource() - u(0.005) )
+    #            component.setDyTarget( component.getDyTarget() + u(0.005) )
+    #            break
+    #    cell = cellLib.getCell( 'gf180mcu_fd_sc_mcu9t5v0__oai221_1' )
+    #    if cell:
+    #        print( '     - Patching pin A2 of "{}".'.format( cell.getName() ))
+    #        A2 = cell.getNet( 'A2' )
+    #        for component in A2.getComponents():
+    #            if component.getLayer() != metal1: continue
+    #            if not isinstance(component,Vertical): continue
+    #            if not NetExternalComponents.isExternal(component): continue
+    #            component.setDySource( component.getDySource() - u(0.005) )
+    #            component.setDyTarget( component.getDyTarget() + u(0.005) )
+    #            break
+    #    cell = cellLib.getCell( 'gf180mcu_fd_sc_mcu9t5v0__nand4_1' )
+    #    if cell:
+    #        print( '     - Patching pin A2 of "{}".'.format( cell.getName() ))
+    #        A2 = cell.getNet( 'A2' )
+    #        for component in A2.getComponents():
+    #            if component.getLayer() != metal1: continue
+    #            if not isinstance(component,Vertical): continue
+    #            if not NetExternalComponents.isExternal(component): continue
+    #            component.setDySource( component.getDySource() - u(0.005) )
+    #            component.setDyTarget( component.getDyTarget() + u(0.005) )
+    #            break
 
     return cellLib
 
