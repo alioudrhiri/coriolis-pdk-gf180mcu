@@ -171,7 +171,7 @@ def _routing ( useHV ):
         cfg.anabatic.globalLengthThreshold = 30*u(5.04)
         cfg.anabatic.hsmallThreshold = 3
         cfg.anabatic.vsmallThreshold = 3
-        cfg.anabatic.vlargeThreshold = 5
+        cfg.anabatic.vlargeThreshold = 6
         cfg.anabatic.saturateRatio = 0.90
         cfg.anabatic.saturateRp = 10
         cfg.anabatic.topRoutingLayer = 'Metal5'
@@ -188,7 +188,7 @@ def _routing ( useHV ):
         cfg.anabatic.netBuilderStyle = netBuilderStyle
         cfg.anabatic.routingStyle = routingStyle
         cfg.katana.disableStackedVias = False
-        cfg.katana.hTracksReservedMin = 4
+        cfg.katana.hTracksReservedMin = 5
         cfg.katana.hTracksReservedLocal = 7
         cfg.katana.hTracksReservedLocal = [0, 18]
         cfg.katana.vTracksReservedMin = 7
@@ -214,6 +214,7 @@ def _routing ( useHV ):
         cfg.block.spareSide = 10
         cfg.block.upperEastWestPins = True
         cfg.spares.buffer = 'gf180mcu_fd_sc_mcu9t5v0__clkbuf_2'
+        cfg.spares.hfnsBuffer = 'gf180mcu_fd_sc_mcu9t5v0__buf_4'
         cfg.spares.maxSinks = 20
 
 

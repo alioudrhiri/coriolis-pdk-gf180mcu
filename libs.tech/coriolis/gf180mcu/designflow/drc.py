@@ -69,6 +69,7 @@ class DRC ( FlowTask ):
         shellEnv[ 'PDK_ROOT' ] = DRC.PDK_ROOT.as_posix()
         shellEnv[ 'PDK'      ] = DRC.PDK.as_posix()
         shellEnv.export()
+        print( self.command )
         state = subprocess.run( self.command )
         if state.returncode:
             e = ErrorMessage( 1, 'DRC.doTask(): UNIX command failed ({}).' \
