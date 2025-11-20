@@ -1,0 +1,15 @@
+
+addFilter("noarch-python-in-64bit-path.*gf180mcu.*")
+addFilter("non-executable-script.*gf180mcu.*")
+addFilter("script-without-shebang.*gf180mcu.*")
+addFilter("env-script-interpreter.*gf180mcu.*")
+addFilter("files-duplicated-waste.*gf180mcu.*")
+addFilter("filelist-forbidden-noarch.*gf180mcu.*")
+addFilter("files-duplicate.*gf180mcu.*")
+addFilter("files-duplicated-waste")
+addFilter("version-control-internal-file.*gf180mcu.*")
+addFilter("noarch-with-lib64")
+
+setBadness("suse-filelist-forbidden-noarch", 0)
+setBadness("filelist-forbidden-noarch", 0)
+setBadness("version-control-internal-file", 0)

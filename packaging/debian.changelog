@@ -1,0 +1,5 @@
+coriolis-pdk-gf180mcu (2025.07.21) unstable; urgency=low
+
+  * Initial release. Closes: #00001
+  
+  -- Jean-Paul Chaput <Jean-Paul.Chaput@lip6.fr> Tue Jul 22 11:28:15 AM CEST 2025
