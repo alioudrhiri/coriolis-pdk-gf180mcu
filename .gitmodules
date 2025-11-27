@@ -1,3 +1,3 @@
 [submodule "gf180mcu-pdk"]
 	path = gf180mcu-pdk
-	url = git@github.com:google/gf180mcu-pdk.git
+	url = https://github.com/google/gf180mcu-pdk.git
