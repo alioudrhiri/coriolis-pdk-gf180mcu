@@ -1,6 +1,5 @@
 
 from pathlib import Path
-from coriolis.designflow.technos import Where
 from coriolis.designflow.task    import ShellEnv
 
 
@@ -11,7 +10,7 @@ pdkMasterTop = None
 pdkGFTop     = None
 
 
-def setup ( checkToolkit=None, useHV=False ):
+def setup ( useHV=False ):
     global pdkMasterTop
     global pdkGFTop
 
@@ -20,7 +19,10 @@ def setup ( checkToolkit=None, useHV=False ):
     from coriolis                     import CRL 
     from coriolis.helpers             import overlay, l, u, n
     from coriolis.designflow.yosys    import Yosys
+    from coriolis.designflow.iverilog import Iverilog
     from coriolis.designflow.klayout  import Klayout
+    from coriolis.designflow.lvx      import Lvx
+    from coriolis.designflow.x2y      import x2y
     from coriolis.designflow.tasyagle import TasYagle
     from .techno                      import setup as techno_setup 
     from .mcu9t5v0                    import setup as StdCellLib_setup
@@ -28,7 +30,6 @@ def setup ( checkToolkit=None, useHV=False ):
 
     pdkGFTop = Path( __file__ ).parent
 
-    Where( checkToolkit )
 
     techno_setup( useHV )
     StdCellLib_setup( pdkGFTop, useHV )
@@ -56,10 +57,35 @@ def setup ( checkToolkit=None, useHV=False ):
     cellsTop = pdkGFTop / 'libraries' / 'gf180mcu_fd_sc_mcu9t5v0' / 'latest' / 'cells'
    #liberty  = pdkGFTop / 'libraries' / 'gf180mcu_fd_sc_mcu9t5v0' / 'latest' / 'liberty' / 'gf180mcu_fd_sc_mcu9t5v0__tt_025C_5v00.lib'
     liberty  = pdkGFTop / 'mcu9t5v0.lib'
+    spiceCells  = pdkGFTop / 'spice' / 'gf180mcu_fd_sc_mcu9t5v0'
+    corner      = pdkGFTop / 'corner'
+    stdCellLibVlog = pdkGFTop /  'verilog' / 'stdcell.v'
+    ngspiceTech    = pdkGFTop    / 'libraries'/ 'gf180mcu_fd_pr' / 'latest' / 'models' / 'ngspice'
+
 
     Yosys.setLiberty( liberty )
-    ShellEnv.CHECK_TOOLKIT = Where.checkToolkit.as_posix()
+    shellEnv = ShellEnv( 'GF180 GF Alliance Environment' )
+    shellEnv[ 'MBK_CATA_LIB' ] = shellEnv[ 'MBK_CATA_LIB' ] + ':' + spiceCells.as_posix()
+    shellEnv.export()
+    Iverilog.setStdCellLib( stdCellLibVlog )
+
+    ShellEnv.PDK_ROOT      = pdkGFTop.parent.as_posix()
+    ShellEnv.PDK           = 'gf180'
+
 
     klayoutTech = pdkGFTop   / 'libraries' / 'gf180mcu_fd_pr' / 'latest' / 'tech'
     lypFile     = klayoutTech / 'klayout' / 'gf180mcu.lyp'
     Klayout.setLypFile( lypFile )
+    TasYagle.flags         = TasYagle.Transistor
+    TasYagle.SpiceType     = 'hspice'
+    TasYagle.SpiceTrModel  = [ corner/'typical.lib','design.ngspice','sm141064.ngspice',spiceCells/'stdcell.spi' ]
+    TasYagle.MBK_CATA_LIB  = '.:' + (ngspiceTech).as_posix() 
+    Lvx.MBK_CATA_LIB  = TasYagle.MBK_CATA_LIB
+    x2y.MBK_CATA_LIB  = TasYagle.MBK_CATA_LIB
+    TasYagle.MBK_SPI_MODEL = ''
+    TasYagle.Temperature   = 25.0
+    TasYagle.VddSupply     = 5.0 
+    TasYagle.VddName       = 'vdd'
+    TasYagle.VssName       = 'vss'
+    TasYagle.ClockName     = 'clk'
+
