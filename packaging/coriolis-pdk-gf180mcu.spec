@@ -48,6 +48,9 @@ BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  python%{python3_pkgversion}-pip
 BuildRequires:  python%{python3_pkgversion}-wheel
+Requires:       python3%{python3_pkgversion}-docopt
+%else
+Requires:       python3-docopt
 %endif
 
 %if 0%{?is_opensuse}

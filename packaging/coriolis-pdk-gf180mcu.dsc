@@ -14,6 +14,7 @@ Build-Depends:     debhelper-compat (= 13),
                    python3-dev,
                    python3-pip,
                    python3-pip-whl,
+Depends:           python3-docopt,
 Package-List:
  coriolis-pdk-gf180mcu     deb Science/Electronics optional arch=any
 DEBTRANSFORM-RELEASE:   1
