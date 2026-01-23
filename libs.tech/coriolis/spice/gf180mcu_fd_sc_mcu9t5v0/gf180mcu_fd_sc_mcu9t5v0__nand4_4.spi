@@ -1,4 +1,4 @@
-.SUBCKT gf180mcu_fd_sc_mcu9t5v0__nand4_4 A1 A2 A3 A4 ZN VDD VDD VSS VSS
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__nand4_4 A1 A2 A3 A4 ZN VDD VSS
 *.PININFO A1:I A2:I A3:I A4:I ZN:O VDD:P VDD:P VSS:P VSS:G
 *.EQN ZN=!(((A1 * A2) * A3) * A4)
 M_i_2_3 net_2_3 A3 net_1 VSS nmos_6p0 W=1.320000U L=0.600000U

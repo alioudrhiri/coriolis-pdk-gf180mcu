@@ -1,4 +1,4 @@
-.SUBCKT gf180mcu_fd_sc_mcu9t5v0__xor2_1 A1 A2 Z VDD VDD VSS VSS
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__xor2_1 A1 A2 Z VDD VSS
 *.PININFO A1:I A2:I Z:O VDD:P VDD:P VSS:P VSS:G
 *.EQN Z=!((A1 * A2) + !(A1 + A2))
 M_i_6 I A2 VSS VSS nmos_6p0 W=0.660000U L=0.600000U

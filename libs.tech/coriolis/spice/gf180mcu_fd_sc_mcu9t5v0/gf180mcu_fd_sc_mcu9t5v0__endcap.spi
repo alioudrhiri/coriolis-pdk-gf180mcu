@@ -1,4 +1,4 @@
-.SUBCKT gf180mcu_fd_sc_mcu9t5v0__endcap VDD VDD VSS VSS
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__endcap VDD VSS
 *.PININFO VDD:P VDD:P VSS:P VSS:G
 
 .ENDS

@@ -1,4 +1,4 @@
-.SUBCKT gf180mcu_fd_sc_mcu9t5v0__dffnq_4 D CLKN Q VDD VDD VSS VSS
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__dffnq_4 D CLKN Q VDD VSS
 *.PININFO D:I CLKN:I Q:O VDD:P VDD:P VSS:P VSS:G
 M_tn9 ncki CLKN VSS VSS nmos_6p0 W=0.790000U L=0.600000U
 M_tn16 cki ncki VSS VSS nmos_6p0 W=0.790000U L=0.600000U

@@ -296,4 +296,12 @@ def _loadStdLib ( pdkTop ):
 
 def setup ( pdkTop, useHV ):
     _routing( useHV )
-    _loadStdLib( pdkTop )
+    lib=_loadStdLib( pdkTop )
+    try:
+        from .mcu9t5v0_fix import fix
+    except:
+        pass
+    else:
+        fix(lib)
+
+    return lib

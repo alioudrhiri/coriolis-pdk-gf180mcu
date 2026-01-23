@@ -1,4 +1,4 @@
-.SUBCKT gf180mcu_fd_sc_mcu9t5v0__clkbuf_20 I Z VDD VDD VSS VSS
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__clkbuf_20 I Z VDD VSS
 *.PININFO I:I Z:O VDD:P VDD:P VSS:P VSS:G
 *.EQN Z=I
 M_i_2_0 Z_neg I VSS VSS nmos_6p0 W=0.730000U L=0.600000U

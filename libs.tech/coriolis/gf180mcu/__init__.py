@@ -78,8 +78,8 @@ def setup ( useHV=False ):
     Klayout.setLypFile( lypFile )
     TasYagle.flags         = TasYagle.Transistor
     TasYagle.SpiceType     = 'hspice'
-    TasYagle.SpiceTrModel  = [ corner/'typical.lib','design.ngspice','sm141064.ngspice',spiceCells/'stdcell.spi' ]
-    TasYagle.MBK_CATA_LIB  = '.:' + (ngspiceTech).as_posix() 
+    TasYagle.SpiceTrModel  = [ corner/'typical.lib','design.ngspice','sm141064.ngspice']
+    TasYagle.MBK_CATA_LIB  = '.:' + (ngspiceTech).as_posix() + ':'+ (spiceCells).as_posix() 
     Lvx.MBK_CATA_LIB  = TasYagle.MBK_CATA_LIB
     x2y.MBK_CATA_LIB  = TasYagle.MBK_CATA_LIB
     TasYagle.MBK_SPI_MODEL = ''

@@ -20,6 +20,7 @@ install_data  ( 'mcu9t5v0.lib'            , install_dir:pdks_dir )
 cells_files = [ 'libs.tech/coriolis/gf180mcu/__init__.py'
               , 'libs.tech/coriolis/gf180mcu/techno.py'
               , 'libs.tech/coriolis/gf180mcu/mcu9t5v0.py'
+              , 'libs.tech/coriolis/gf180mcu/mcu9t5v0_fix.py'
               , 'libs.tech/coriolis/gf180mcu/iolib.py'
               ]
 

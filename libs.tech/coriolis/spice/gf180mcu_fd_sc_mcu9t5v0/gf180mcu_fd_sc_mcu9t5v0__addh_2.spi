@@ -1,4 +1,4 @@
-.SUBCKT gf180mcu_fd_sc_mcu9t5v0__addh_2 A B CO S VDD VDD VSS VSS
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__addh_2 A B CO S VDD VSS
 *.PININFO A:I B:I CO:O S:O VDD:P VDD:P VSS:P VSS:G
 *.EQN CO=(A * B);S=!((A * B) + !(A + B))
 M_i_2_1 CO NCO VSS VSS nmos_6p0 W=1.320000U L=0.600000U

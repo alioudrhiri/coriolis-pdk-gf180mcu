@@ -1,4 +1,4 @@
-.SUBCKT gf180mcu_fd_sc_mcu9t5v0__addf_2 A B CI CO S VDD VDD VSS VSS
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__addf_2 A B CI CO S VDD VSS
 *.PININFO A:I B:I CI:I CO:O S:O VDD:P VDD:P VSS:P VSS:G
 *.EQN CO=(((B * CI) + (B * A)) + (CI * A));S=!((!((B * CI) + !(B + CI)) * A) + !(!((B * CI) + !(B + CI)) + A))
 M_M51_17 VSS net9 S VSS nmos_6p0 W=1.320000U L=0.600000U
