@@ -1,19 +1,20 @@
 #!/bin/sh
 
- nightlyInstall="false"
+ getString () { string=`echo $1 | cut -d '=' -f 2-`; echo $string; }
+
+
+ rootDir="`cd ../..; pwd`"
  while [ $# -gt 0 ]; do
    case $1 in
-     --nightly) echo "Installing in nightly mode.";
-                      nightlyInstall="true";;
+     --root-dir) rootDir="`getString $1`"
+                 echo "Forcing root directory to \"${rootDir}\".";;
    esac
    shift
  done
 
- if [ "${nightlyInstall}" = "true" ]; then
-   rootDir="${HOME}/nightly/coriolis-2.x"
- else
-   rootDir="${HOME}/coriolis-2.x"
- fi
+ echo "Using rootDir=\"${rootDir}\"."
+
+
    buildDir="${rootDir}/release/build-gf180mcu"
  installDir="${rootDir}/release/install"
  rm -rf ${buildDir}
