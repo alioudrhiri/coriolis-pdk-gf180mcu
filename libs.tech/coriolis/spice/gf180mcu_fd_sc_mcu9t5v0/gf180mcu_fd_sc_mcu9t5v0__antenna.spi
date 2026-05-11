@@ -1,0 +1,4 @@
+.SUBCKT gf180mcu_fd_sc_mcu9t5v0__antenna I VDD VSS
+d0 VSS I diode_nd2ps_06v0 0.2034p 1.85u $m=1
+d1 I VDD diode_pd2nw_06v0 0.2034p 1.85u $m=1
+.ENDS
